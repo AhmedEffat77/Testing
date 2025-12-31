@@ -31,3 +31,8 @@ if (loginForm) {
     }
   });
 }
+document.getElementById("forgotPassword")
+  ?.addEventListener("click", async () => {
+    const module = await import("./password-reset.js");
+    module.resetPassword();
+  });
