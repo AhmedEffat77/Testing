@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "wh-management-11c29",
   storageBucket: "wh-management-11c29.firebasestorage.app",
   messagingSenderId: "163490490102",
-  appId: "1:163490490102:web:650931c42fd54f699c2ed7"
+  appId: "1:163490490102:web:c1353380a71f2fdc9c2ed7"
 };
 
 // Initialize Firebase
