@@ -17,3 +17,6 @@ if (resetLink) {
     }
   });
 }
+export async function resetPassword() {
+  // sendPasswordResetEmail logic
+}
