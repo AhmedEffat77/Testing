@@ -5,7 +5,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebas
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDCnK36b-6u16j9YTXYvzpj_uR2_E6gOPM",
+  apiKey: "AIzaSyDCnK36b-6u16j9YTXYvzpJ_uR2_E6gOPM",
   authDomain: "wh-management-11c29.firebaseapp.com",
   projectId: "wh-management-11c29",
   storageBucket: "wh-management-11c29.firebasestorage.app",
