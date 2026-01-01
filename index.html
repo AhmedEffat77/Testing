@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="container">
+    
+<div class="card" style="max-width:520px;margin:0 auto;">
+  <div class="topbar">
+    <div>
+      <h1>WH Management</h1>
+      <p class="small">Sign in with your email and password.</p>
+    </div>
+    <button id="themeBtn" class="secondary" type="button" title="Toggle theme">Theme</button>
+  </div>
+
+  <form id="loginForm">
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="username" required />
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" required />
+
+    <div class="row" style="margin-top:14px; align-items:center;">
+      <button type="submit">Login</button>
+      <a href="password-reset.html">Forgot password?</a>
+    </div>
+
+    <p class="small" style="margin-top:14px;">No account? <a href="register.html">Register</a></p>
+  </form>
+</div>
+
+  </div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/theme.js"></script>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

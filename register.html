@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="container">
+    
+<div class="card" style="max-width:620px;margin:0 auto;">
+  <div class="topbar">
+    <div>
+      <h2>Create account</h2>
+      <p class="small">After registration, an admin/warehouse manager must approve you.</p>
+    </div>
+    <button id="themeBtn" class="secondary" type="button">Theme</button>
+  </div>
+
+  <form id="registerForm">
+    <div class="row">
+      <div>
+        <label for="name">Full name</label>
+        <input id="name" required />
+      </div>
+      <div>
+        <label for="department">Department / Team</label>
+        <input id="department" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="regEmail">Email</label>
+        <input id="regEmail" type="email" autocomplete="username" required />
+      </div>
+      <div>
+        <label for="regPassword">Password</label>
+        <input id="regPassword" type="password" autocomplete="new-password" minlength="6" required />
+      </div>
+    </div>
+
+    <label for="role">Requested role</label>
+    <select id="role" required>
+      <option value="user">Regular User</option>
+      <option value="warehouse">Warehouse Manager</option>
+      <option value="technical">Technical Manager</option>
+    </select>
+
+    <div class="row" style="margin-top:14px; align-items:center;">
+      <button type="submit">Create account</button>
+      <a href="index.html">Back to login</a>
+    </div>
+  </form>
+</div>
+
+  </div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/theme.js"></script>
+  <script type="module" src="js/register.js"></script>
+</body>
+</html>

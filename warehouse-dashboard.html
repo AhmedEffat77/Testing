@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Warehouse Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="container">
+    
+<div class="card">
+  <div class="topbar">
+    <div>
+      <h2>Warehouse Dashboard</h2>
+      <p class="small">Upload stock, manage requests, and track stock movement.</p>
+    </div>
+    <div class="row" style="justify-content:flex-end; flex:0;">
+      <button id="themeBtn" class="secondary" type="button">Theme</button>
+      <button id="logoutBtn" class="secondary" type="button">Logout</button>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n" id="kpiItems">-</div><div class="t">Stock items</div></div>
+    <div class="kpi"><div class="n" id="kpiLow">-</div><div class="t">Low stock</div></div>
+    <div class="kpi"><div class="n" id="kpiReqPending">-</div><div class="t">Pending requests</div></div>
+    <div class="kpi"><div class="n" id="kpiReqApproved">-</div><div class="t">Approved today</div></div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div>
+      <h3>Stock upload (CSV / Excel)</h3>
+      <p class="small">Upload the official sheet. Required columns: Reference, Model, Category, Available Qty (AE), Last move, Creation date, Description (others are optional).</p>
+      <input id="stockFile" type="file" accept=".csv,.xlsx,.xls" />
+      <div class="row" style="margin-top:10px;">
+        <input id="lowThreshold" type="number" min="0" value="5" />
+        <button id="uploadBtn" type="button">Upload / Replace stock</button>
+      </div>
+      <p class="small muted" id="uploadStatus"></p>
+    </div>
+
+    <div>
+      <h3>Pending requests</h3>
+      <p class="small">Approve/Reject. Approved requests will deduct stock automatically.</p>
+      <input id="reqSearch" placeholder="Search (user, dept, ref, model)..." />
+      <div id="pendingRequests"></div>
+      <div class="row" style="margin-top:10px;">
+        <button id="bulkApproveBtn" type="button" class="secondary">Bulk approve selected</button>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div>
+      <h3>Stock</h3>
+      <div class="row" style="margin-top:8px;">
+        <input id="stockSearch" placeholder="Search reference/model/category..." />
+        <select id="categoryFilter"><option value="">All categories</option></select>
+      </div>
+      <div id="stockTable"></div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/theme.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script type="module" src="js/warehouse.js"></script>
+<script type="module" src="js/logout.js"></script>
+
+</body>
+</html>

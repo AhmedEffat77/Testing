@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <div class="container">
+    
+<div class="card">
+  <div class="topbar">
+    <div>
+      <h2>User Dashboard</h2>
+      <p class="small">Create requests and track status.</p>
+    </div>
+    <div class="row" style="justify-content:flex-end; flex:0;">
+      <button id="themeBtn" class="secondary" type="button">Theme</button>
+      <button id="logoutBtn" class="secondary" type="button">Logout</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <h3>New request</h3>
+      <form id="reqForm">
+        <div class="row">
+          <div>
+            <label for="reqName">Your name</label>
+            <input id="reqName" required />
+          </div>
+          <div>
+            <label for="reqDept">Department/Team</label>
+            <input id="reqDept" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="ref">Item Reference</label>
+            <input id="ref" placeholder="e.g., REF-001" />
+          </div>
+          <div>
+            <label for="model">Model</label>
+            <input id="model" placeholder="e.g., iPhone 13" />
+          </div>
+          <div>
+            <label for="qty">Quantity</label>
+            <input id="qty" type="number" min="1" required />
+          </div>
+        </div>
+        <label for="notes">Purpose/Notes</label>
+        <textarea id="notes" placeholder="Why do you need this item?"></textarea>
+
+        <div class="row" style="margin-top:12px;">
+          <button type="submit">Submit request</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <h3>My requests</h3>
+      <div class="row" style="margin-top:8px;">
+        <select id="myStatus">
+          <option value="">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Fulfilled">Fulfilled</option>
+        </select>
+        <input id="mySearch" placeholder="Search..." />
+      </div>
+      <div id="myRequests"></div>
+    </div>
+  </div>
+</div>
+
+  </div>
+  <div id="toast" class="toast"></div>
+  <script type="module" src="js/theme.js"></script>
+  
+<script type="module" src="js/user.js"></script>
+<script type="module" src="js/logout.js"></script>
+
+</body>
+</html>
