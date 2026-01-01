@@ -18,5 +18,18 @@
 
 <script type="module" src="js/warehouse.js"></script>
 <script type="module" src="js/logout.js"></script>
+
+  <script type="module">
+  import { protectPage } from "./js/guard.js";
+
+  protectPage("warehouse")
+    .then(() => {
+      console.log("Warehouse authorized");
+    })
+    .catch(() => {
+      location.href = "index.html";
+    });
+</script>
+
 </body>
 </html>
