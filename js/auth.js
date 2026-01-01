@@ -31,4 +31,11 @@ if (loginForm) {
     }
   });
 }
+if (data.role === "admin") {
+  location.href = "admin-dashboard.html";
+} else if (data.role === "warehouse") {
+  location.href = "warehouse-dashboard.html";
+} else {
+  location.href = "user-dashboard.html";
+}
 
