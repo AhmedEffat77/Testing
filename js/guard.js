@@ -4,11 +4,25 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase
 
 export function protectPage(role) {
   onAuthStateChanged(auth, async (user) => {
-    if (!user) location.href = "index.html";
+    if (!user) {
+      location.href = "index.html";
+      return;
+    }
+
     const snap = await getDoc(doc(db, "users", user.uid));
-    if (!snap.data().approved || snap.data().role !== role) {
+
+    if (!snap.exists()) {
+      alert("No user profile found. Please register first.");
+      location.href = "index.html";
+      return;
+    }
+
+    const data = snap.data();
+
+    if (!data.approved || data.role !== role) {
       alert("Access denied");
       location.href = "index.html";
+      return;
     }
   });
 }
