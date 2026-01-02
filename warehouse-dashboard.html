@@ -28,9 +28,24 @@
     <a class="kpi" href="good-items.html" style="text-decoration:none;color:inherit;"><div class="n" id="kpiGood">-</div><div class="t">Good items</div></a>
     <div class="kpi"><div class="n" id="kpiReqPending">-</div><div class="t">Pending requests</div></div>
     <div class="kpi"><div class="n" id="kpiReqApproved">-</div><div class="t">Approved today</div></div>
+
+    <div class="kpi"><div class="n" id="kpiAvailSum">-</div><div class="t">Total available (AE)</div></div>
+    <div class="kpi"><div class="n" id="kpiReqQty">-</div><div class="t">Total requested (Pending)</div></div>
+    <div class="kpi"><div class="n" id="kpiConsumedSum">-</div><div class="t">Total consumed (AE)</div></div>
   </div>
 
   <hr />
+
+
+  <div class="row" style="margin: 14px 0 24px;">
+    <div style="width:100%">
+      <h3>Daily activity (last 30 days)</h3>
+      <p class="small">Approved request quantity and stock movement by day.</p>
+      <div class="card" style="padding:14px;">
+        <canvas id="dailyChart" height="90"></canvas>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div>
@@ -78,5 +93,6 @@
 <script type="module" src="js/warehouse.js"></script>
 <script type="module" src="js/logout.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </body>
 </html>

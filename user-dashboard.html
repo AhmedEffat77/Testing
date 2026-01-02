@@ -33,17 +33,22 @@
           </div>
           <div>
             <label for="reqDept">Department/Team</label>
-            <input id="reqDept" required />
+            <input id="reqDept" required list="deptList" placeholder="Select department..." />
+          </div>
+        
+          <div>
+            <label for="category">Category</label>
+            <input id="category" list="categoryList" placeholder="Select category..." />
           </div>
         </div>
         <div class="row">
           <div>
             <label for="ref">Item Reference</label>
-            <input id="ref" placeholder="e.g., REF-001" />
+            <input id="ref" list="refList" placeholder="Start typing reference..." />
           </div>
           <div>
             <label for="model">Model</label>
-            <input id="model" placeholder="e.g., iPhone 13" />
+            <input id="model" list="modelList" placeholder="Start typing model..." />
           </div>
           <div>
             <label for="qty">Quantity</label>
@@ -80,7 +85,11 @@
 
   </div>
   <div id="toast" class="toast"></div>
-  <script type="module" src="js/theme.js"></script>
+    <datalist id="deptList"></datalist>
+  <datalist id="categoryList"></datalist>
+  <datalist id="refList"></datalist>
+  <datalist id="modelList"></datalist>
+<script type="module" src="js/theme.js"></script>
   
 <script type="module" src="js/user.js"></script>
 <script type="module" src="js/logout.js"></script>
