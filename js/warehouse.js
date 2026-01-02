@@ -1,7 +1,7 @@
 import { protectPage } from "./guard.js";
 import { auth, db } from "./firebase.js";
 import {
-  collection, getDocs, writeBatch, doc, query, where, orderBy,
+  collection, getDocs, writeBatch, doc, query, where,
   updateDoc, addDoc, serverTimestamp, getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { showToast, escapeHtml } from "./utils.js";
@@ -153,10 +153,11 @@ function reqCard(r) {
 }
 
 async function loadPendingRequests() {
-  const q = query(collection(db, "requests"), where("status", "==", "Pending"), orderBy("createdAt", "desc"));
+  const q = query(collection(db, "requests"), where("status", "==", "Pending"));
   const snap = await getDocs(q);
   _pending = [];
   snap.forEach(d => _pending.push({ id: d.id, ...d.data() }));
+  _pending.sort((a,b) => (b.createdAt?.toMillis?.()||0) - (a.createdAt?.toMillis?.()||0));
 
   const term = (reqSearch.value || "").trim().toLowerCase();
   const view = _pending.filter(r => {
@@ -313,6 +314,9 @@ async function loadKpis() {
     if (avail < th) low++;
   });
   document.getElementById("kpiLow").textContent = low;
+  const good = Math.max(0, _stock.length - low);
+  const goodEl = document.getElementById("kpiGood");
+  if (goodEl) goodEl.textContent = good;
   document.getElementById("kpiReqPending").textContent = _pending.length;
 
   const today = new Date(); today.setHours(0,0,0,0);

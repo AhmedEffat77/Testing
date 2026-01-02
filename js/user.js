@@ -1,7 +1,7 @@
 import { protectPage } from "./guard.js";
 import { auth, db } from "./firebase.js";
 import {
-  addDoc, collection, serverTimestamp, query, where, orderBy, getDocs, doc, getDoc
+  addDoc, collection, serverTimestamp, query, where, getDocs, doc, getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { showToast, escapeHtml } from "./utils.js";
 
@@ -11,6 +11,29 @@ const form = document.getElementById("reqForm");
 const myList = document.getElementById("myRequests");
 const statusEl = document.getElementById("myStatus");
 const searchEl = document.getElementById("mySearch");
+const refListEl = document.getElementById("refList");
+const modelListEl = document.getElementById("modelList");
+
+async function loadStockSuggestions() {
+  try {
+    if (!refListEl || !modelListEl) return;
+    const snap = await getDocs(collection(db, "stockItems"));
+    const refs = new Set();
+    const models = new Set();
+    snap.forEach(d => {
+      const x = d.data() || {};
+      if (x.reference) refs.add(String(x.reference));
+      if (x.model) models.add(String(x.model));
+    });
+
+    refListEl.innerHTML = Array.from(refs).sort().slice(0, 2000)
+      .map(v => `<option value="${escapeHtml(v)}"></option>`).join("");
+    modelListEl.innerHTML = Array.from(models).sort().slice(0, 2000)
+      .map(v => `<option value="${escapeHtml(v)}"></option>`).join("");
+  } catch (e) {
+    console.warn("Autocomplete load skipped:", e);
+  }
+}
 
 async function prefillProfile() {
   const user = auth.currentUser;
@@ -43,7 +66,7 @@ function reqRow(r) {
 async function loadMine() {
   const user = auth.currentUser;
   if (!user) return;
-  const q = query(collection(db, "requests"), where("userId", "==", user.uid), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "requests"), where("userId", "==", user.uid));
   const snap = await getDocs(q);
 
   const status = statusEl.value;
@@ -93,6 +116,7 @@ form?.addEventListener("submit", async (e) => {
     await addDoc(collection(db, "requests"), payload);
     showToast("Request submitted");
     form.reset();
+await loadStockSuggestions();
     await prefillProfile();
     await loadMine();
   } catch (err) {
