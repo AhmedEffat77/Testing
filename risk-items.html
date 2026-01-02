@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Risk items</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <h2 style="margin:0;">Risk items</h2>
+      <div class="row" style="gap:10px;">
+        <a class="button secondary" href="warehouse-dashboard.html">Back</a>
+        <button id="logoutBtn" type="button">Logout</button>
+      </div>
+    </div>
+
+    <p class="muted small">Items where Available Qty is below the configured Low Threshold.</p>
+
+    <div class="row" style="gap:10px; margin:10px 0;">
+      <input id="riskSearch" placeholder="Search reference/model/category..." />
+      <select id="riskCategory"></select>
+    </div>
+
+    <div id="riskTable"></div>
+  </div>
+
+  <script type="module" src="js/risk-items.js"></script>
+  <script type="module" src="js/logout.js"></script>
+</body>
+</html>
