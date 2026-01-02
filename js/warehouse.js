@@ -24,6 +24,7 @@ const categoryFilter = document.getElementById("categoryFilter");
 let _pending = [];
 let _stock = [];
 let _selected = new Set();
+let _dailyChart = null;
 
 function normalizeKey(s) { return String(s || "").trim(); }
 

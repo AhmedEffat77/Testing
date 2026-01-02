@@ -13,6 +13,14 @@ const statusEl = document.getElementById("myStatus");
 const searchEl = document.getElementById("mySearch");
 const refListEl = document.getElementById("refList");
 const modelListEl = document.getElementById("modelList");
+let STOCK_REFS = new Set();
+let STOCK_MODELS = new Set();
+let STOCK_CATEGORIES = new Set();
+
+const categoryListEl = document.getElementById("categoryList");
+const deptListEl = document.getElementById("deptList");
+const categoryInput = document.getElementById("category");
+
 
 async function loadStockSuggestions() {
   try {
@@ -129,4 +137,23 @@ statusEl?.addEventListener("change", loadMine);
 searchEl?.addEventListener("input", loadMine);
 
 await prefillProfile();
+
+  // Validate against uploaded stock
+  const category = (document.getElementById("category")?.value || "").trim();
+  if (category && !STOCK_CATEGORIES.has(category)) {
+    showToast("Invalid category. Please pick from the list (uploaded stock categories).");
+    return;
+  }
+  const refVal = (payload.itemReference || "").trim();
+  const modelVal = (payload.itemModel || "").trim();
+  if (refVal && !STOCK_REFS.has(refVal)) {
+    showToast("Reference not found in uploaded stock. Please select a valid reference.");
+    return;
+  }
+  if (modelVal && !STOCK_MODELS.has(modelVal)) {
+    showToast("Model not found in uploaded stock. Please select a valid model.");
+    return;
+  }
+  // If user filled category, keep it in request for better filtering
+  payload.itemCategory = category || "";
 await loadMine();
