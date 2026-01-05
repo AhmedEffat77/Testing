@@ -132,3 +132,33 @@ button:disabled{opacity:.6; cursor:not-allowed}
 .toast.show{display:block}
 .muted{color:var(--muted)}
 hr{border:0; border-top:1px solid var(--border); margin:16px 0}
+
+
+/* Brand logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.brand img.logo {
+  height: 44px;
+  width: auto;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  padding: 6px;
+}
+.brand .brand-title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+@media (max-width: 520px) {
+  .brand img.logo { height: 38px; }
+}
