@@ -1,55 +1,3 @@
-# WH Management (Firebase + GitHub Pages)
-
-This is a static web app (HTML/CSS/JS) hosted on GitHub Pages and backed by:
-- Firebase Authentication
-- Cloud Firestore
-
-## Roles
-- `admin`
-- `warehouse`
-- `technical`
-- `user`
-
-A user must have:
-- `approved: true`
-- `active: true`
-- `role` in the allowed roles
-
-## Firestore Collections (Schema)
-
-### `users` (doc id = Auth UID)
-```json
-{
-  "name": "Ahmed Effat",
-  "email": "ahmed@example.com",
-  "department": "Warehouse",
-  "role": "admin",
-  "approved": true,
-  "active": true,
-  "createdAt": "<serverTimestamp>"
-}
-```
-
-### `stockItems` (doc id = Reference or Model)
-Required fields used by the app:
-- `reference` (string) OR `model` (string)
-- `category` (string)
-- `availableQty` (number)
-- `lowThreshold` (number)
-
-### `requests` (auto id)
-- `userId`, `requesterName`, `department`
-- `itemReference`, `itemModel`, `qty`, `notes`
-- `status`: `Pending`, `Approved`, `Rejected`, `Fulfilled`
-- `managerComment`, `createdAt`, `updatedAt`, `updatedBy`
-
-### `stockMovements` (auto id)
-- `stockId`, `requestId`, `delta`, `before`, `after`, `actorId`, `createdAt`
-
-## Firestore Security Rules
-Paste into Firestore → Rules:
-
-```rules
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -132,18 +80,3 @@ service cloud.firestore {
     }
   }
 }
-
-```
-
-## Firebase Console Checklist
-1) Authentication → Sign-in method → enable **Email/Password**
-2) Authentication → Settings → Authorized domains:
-   - `ahmedeffat77.github.io`
-3) Firestore Database → Create database → Production mode
-
-## Deploy to GitHub Pages
-Upload all files to your repository root, then:
-Settings → Pages → Deploy from a branch → main → /root
-
-## Notes
-- Email notifications are not included in this static build. For production, add Firebase Extensions (Trigger Email) or Cloud Functions.
